@@ -1,5 +1,6 @@
 package ar.com.jlv.api.user.dtos;
 
+import java.time.LocalDateTime;
 import java.util.List;
 
 import javax.validation.constraints.Email;
@@ -25,4 +26,8 @@ public class UserDTO {
 	@Pattern(regexp = "^(?=.*[0-9]{2,})(?=.*[a-z])(?=.*[A-Z])(?=.*[@#!$%^&+=])(?=\\S+$).{8,}$",message = "Error Pass Pattern")
 	private String password;
 	private List<PhonesDTO> phones;
+	
+	private LocalDateTime create;
+	private LocalDateTime modified;
+	private LocalDateTime lastLogin;
 }

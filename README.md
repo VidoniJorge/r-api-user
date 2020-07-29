@@ -24,14 +24,14 @@ Todos los endpoints deben aceptar y retornar solamente JSON, inclusive al para l
         }
 
 * [ok] - Responder el código de status HTTP adecuado
-* En caso de éxito, retorne el usuario y los siguientes campos:
+* [Maomenos] En caso de éxito, retorne el usuario y los siguientes campos:
   * id: id del usuario (puede ser lo que se genera por el banco de datos, pero sería más deseable un UUID)
   * created: fecha de creación del usuario
   * modified: fecha de la última actualización de usuario
   * last_login: del último ingreso (en caso de nuevo usuario, va a coincidir con la fecha de creación)
   * token: token de acceso de la API (puede ser UUID o JWT)
   * isactive: Indica si el usuario sigue habilitado dentro del sistema.
-* En caso que el correo exista en la base de datos, deberá retornar un error "El correo ya registrado".
+* [ok] En caso que el correo exista en la base de datos, deberá retornar un error "El correo ya registrado".
 * [ok] - El correo debe seguir una expresión regular para validar que formato sea el correcto. (aaaaaaa@dominio.cl)
 * [ok] - La clave debe seguir una expresión regular para validar que formato sea el correcto. (Una Mayúscula, letras minúsculas, y dos números)
   * ^                 # start-of-string

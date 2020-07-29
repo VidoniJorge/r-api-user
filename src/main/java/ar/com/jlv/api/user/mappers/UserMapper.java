@@ -10,7 +10,7 @@ import ar.com.jlv.api.user.entities.UserEntity;
 
 import org.mapstruct.InjectionStrategy;
 
-@Mapper(componentModel = "spring"/*, injectionStrategy = InjectionStrategy.FIELD*/)
+@Mapper(componentModel = "spring", injectionStrategy = InjectionStrategy.FIELD)
 public interface UserMapper {
 
 	
@@ -19,10 +19,6 @@ public interface UserMapper {
 	@Mapping(source = "email", target = "email")
 	UserEntity convertDtoToEntity(UserDTO user);
 
-	@Mapping(source = "name", target = "name")
-	@Mapping(source = "password", target = "password")
-	@Mapping(source = "email", target = "email")
-	
 	UserDTO convertEntityToDto(UserEntity user);
 
 }

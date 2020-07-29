@@ -9,6 +9,7 @@ import org.springframework.stereotype.Service;
 
 import ar.com.jlv.api.user.dtos.UserDTO;
 import ar.com.jlv.api.user.entities.UserEntity;
+import ar.com.jlv.api.user.exceptions.ExistedEmailException;
 import ar.com.jlv.api.user.exceptions.UserNotFoundException;
 import ar.com.jlv.api.user.mappers.UserMapper;
 import ar.com.jlv.api.user.repositories.UserRepository;
@@ -35,12 +36,13 @@ public class UserServiceImpl implements UserService {
 		return this.userMapper.convertEntityToDto(entity);
 	}
 
-	public void create(final UserDTO user) {
+	public UserDTO create(final UserDTO user) {
 		this.validatedNonExistentEmail(user.getEmail());
 		final UserEntity entity = userMapper.convertDtoToEntity(user);
 		entity.setCreate(LocalDateTime.now());
 		entity.setIsActive(true);
 		this.userRepository.save(entity);
+		return this.userMapper.convertEntityToDto(entity);
 	}
 
 	public void update(final String id, final UserDTO user) {
@@ -67,12 +69,9 @@ public class UserServiceImpl implements UserService {
 	}
 	
 	private void validatedNonExistentEmail(final String email) {
-		Optional response = this.userRepository.findByEmailIgnoreCase(email);
+		final Optional<UserEntity> response = this.userRepository.findByEmailIgnoreCase(email);
 		if(response.isPresent()) {
-			System.out.println("siiiiiiii");
-		} else {
-			System.out.println("noooooo");
+			throw new ExistedEmailException();
 		}
-			
 	}
 }

@@ -44,9 +44,9 @@ public class UserControllerImpl {
 
 	@PostMapping(headers = "Accept=application/json")
 	@ResponseStatus(HttpStatus.CREATED)
-	public void create(@Valid @RequestBody UserDTO user) {
+	public ResponseEntity<UserDTO>  create(@Valid @RequestBody UserDTO user) {
 	    log.info("Inicio metodo create user");
-		userService.create(user);
+		return new ResponseEntity<>(userService.create(user), HttpStatus.CREATED);
 	}
 
 	@PutMapping(path = "id", headers = "Accept=application/json")

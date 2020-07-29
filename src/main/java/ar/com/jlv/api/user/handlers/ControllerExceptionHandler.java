@@ -6,6 +6,7 @@ import org.springframework.web.bind.annotation.ControllerAdvice;
 import org.springframework.web.bind.annotation.ExceptionHandler;
 
 import ar.com.jlv.api.user.dtos.ErrorDTO;
+import ar.com.jlv.api.user.exceptions.ExistedEmailException;
 import ar.com.jlv.api.user.exceptions.UserNotFoundException;
 
 @ControllerAdvice
@@ -20,6 +21,11 @@ public class ControllerExceptionHandler {
     @ExceptionHandler(UserNotFoundException.class)
     protected ResponseEntity<ErrorDTO> handleExceptionNotFound(final UserNotFoundException ex) {
         return buildResponseEntity(ex.getMessage(), HttpStatus.NOT_FOUND);
+    }
+    
+    @ExceptionHandler(ExistedEmailException.class)
+    protected ResponseEntity<ErrorDTO> handleExceptionNotFound(final ExistedEmailException ex) {
+        return buildResponseEntity(ex.getMessage(), HttpStatus.BAD_REQUEST);
     }
     
     private ResponseEntity<ErrorDTO> buildResponseEntity(final String msg, final HttpStatus status) {
