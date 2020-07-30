@@ -1,6 +1,6 @@
-server:
-  servlet:
-    context-path: /users
+#server:
+ # servlet:
+  #  context-path: /users
 
 spring:
   datasource:
@@ -19,4 +19,7 @@ spring:
 logging:
   level:
     root: info
+    
+jwt:
+  secret: jlv.2020
     

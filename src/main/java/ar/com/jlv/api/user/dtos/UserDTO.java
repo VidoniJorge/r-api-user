@@ -23,11 +23,13 @@ public class UserDTO {
 	private String name;
 	@Email(message = "Email should be valid")
 	private String email;
-	@Pattern(regexp = "^(?=.*[0-9]{2,})(?=.*[a-z])(?=.*[A-Z])(?=.*[@#!$%^&+=])(?=\\S+$).{8,}$",message = "Error Pass Pattern")
+	@Pattern(regexp = "^(?=.*[0-9]{2,})(?=.*[a-z])(?=.*[A-Z])(?=.*[@#!$%^&+=])(?=\\S+$).{8,}$", message = "Error Pass Pattern")
 	private String password;
 	private List<PhonesDTO> phones;
-	
+
 	private LocalDateTime create;
 	private LocalDateTime modified;
 	private LocalDateTime lastLogin;
+	private Boolean isActive;;
+	private String token;
 }

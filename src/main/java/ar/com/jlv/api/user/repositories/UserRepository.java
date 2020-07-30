@@ -11,4 +11,6 @@ import ar.com.jlv.api.user.entities.UserEntity;
 public interface UserRepository extends CrudRepository<UserEntity, String> {
 	List<UserEntity> findAll();
 	Optional<UserEntity> findByEmailIgnoreCase(final String email);
+	
+	UserEntity findByNameAndIsActiveTrue(String name);
 }

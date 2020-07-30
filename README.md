@@ -24,7 +24,7 @@ Todos los endpoints deben aceptar y retornar solamente JSON, inclusive al para l
         }
 
 * [ok] - Responder el código de status HTTP adecuado
-* [Maomenos] En caso de éxito, retorne el usuario y los siguientes campos:
+* [ok] En caso de éxito, retorne el usuario y los siguientes campos:
   * id: id del usuario (puede ser lo que se genera por el banco de datos, pero sería más deseable un UUID)
   * created: fecha de creación del usuario
   * modified: fecha de la última actualización de usuario
@@ -43,7 +43,7 @@ Todos los endpoints deben aceptar y retornar solamente JSON, inclusive al para l
   * .{8,}             # anything, at least eight places though
   * $                 # end-of-string
 * Se debe hacer traza de logs dentro del aplicativo.
-*  El token deberá ser persistido junto con el usuario
+* El token deberá ser persistido junto con el usuario
 
 ***
 ## Requisitos mandatorios
