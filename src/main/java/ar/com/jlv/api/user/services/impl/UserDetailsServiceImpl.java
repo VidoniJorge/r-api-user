@@ -26,9 +26,9 @@ public class UserDetailsServiceImpl implements UserDetailsService {
 
 	@Override
 	public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
-		log.trace("Inicio de la búsqueda de usuario activo por nombre");
+		log.info("Inicio de la búsqueda de usuario activo por nombre");
 		final UserEntity user = userRepository.findByNameAndIsActiveTrue(username);
-		log.trace("Fin de la búsqueda de usuario activo por nombre");
+		log.info("Fin de la búsqueda de usuario activo por nombre");
 
 		if (Objects.isNull(user)) {
 			throw new UsernameNotFoundException(username);

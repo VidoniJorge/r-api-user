@@ -28,7 +28,7 @@ public class ControllerExceptionHandler {
 	protected ResponseEntity<ErrorDTO> handleExceptionNotFound(final ExistedEmailException ex) {
 		return buildResponseEntity(ex.getMessage(), HttpStatus.BAD_REQUEST);
 	}
-
+	
 	private ResponseEntity<ErrorDTO> buildResponseEntity(final String msg, final HttpStatus status) {
 		log.error(msg);
 		return new ResponseEntity<>(ErrorDTO.builder().message(msg).build(), status);
