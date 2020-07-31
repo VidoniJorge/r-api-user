@@ -1,6 +1,5 @@
-#server:
- # servlet:
-  #  context-path: /users
+server:
+  port: 8080
 
 spring:
   datasource:

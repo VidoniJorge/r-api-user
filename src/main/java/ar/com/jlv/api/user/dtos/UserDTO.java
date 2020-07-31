@@ -25,7 +25,7 @@ public class UserDTO {
 	private String email;
 	@Pattern(regexp = "^(?=.*[0-9]{2,})(?=.*[a-z])(?=.*[A-Z])(?=.*[@#!$%^&+=])(?=\\S+$).{8,}$", message = "Error Pass Pattern")
 	private String password;
-	private List<PhonesDTO> phones;
+	private List<PhoneDTO> phones;
 
 	private LocalDateTime create;
 	private LocalDateTime modified;

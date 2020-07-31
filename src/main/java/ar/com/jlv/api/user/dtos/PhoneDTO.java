@@ -11,7 +11,7 @@ import lombok.ToString;
 @AllArgsConstructor
 @Builder
 @ToString
-public class PhonesDTO {
+public class PhoneDTO {
 	private Integer number;
 	private Integer cityCode;
 	private Integer countryCode;
