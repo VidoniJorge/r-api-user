@@ -3,8 +3,6 @@ package ar.com.jlv.api.user.mappers;
 import org.mapstruct.Mapper;
 import org.mapstruct.Mapping;
 
-import org.mapstruct.Mappings;
-
 import ar.com.jlv.api.user.dtos.UserDTO;
 import ar.com.jlv.api.user.entities.UserEntity;
 

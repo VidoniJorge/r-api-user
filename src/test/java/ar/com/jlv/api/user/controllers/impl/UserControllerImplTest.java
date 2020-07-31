@@ -19,11 +19,13 @@ import org.springframework.http.ResponseEntity;
 
 import ar.com.jlv.api.user.dtos.PhoneDTO;
 import ar.com.jlv.api.user.dtos.UserDTO;
+import ar.com.jlv.api.user.model.PhoneConst;
+import ar.com.jlv.api.user.model.UserConst;
 import ar.com.jlv.api.user.services.UserService;
 
 @ExtendWith(MockitoExtension.class)
 class UserControllerImplTest {
-	private static final String ID = "776672c2-e34b-437e-9f28-e549fda73457";
+
 	@Mock
 	private UserService userService;
 
@@ -41,9 +43,10 @@ class UserControllerImplTest {
 
 	@BeforeEach
 	public void config() {
-		this.phone = PhoneDTO.builder().number(680809).countryCode(11).cityCode(3542).build();
-		this.userBase = UserDTO.builder().id(ID).name("jorge").email("jorge.vidoni@myemail.com")
-				.password("$2a$10$DE1330J9qm").phones(List.of(this.phone)).create(creationDate).lastLogin(creationDate)
+		this.phone = PhoneDTO.builder().number(PhoneConst.NUMBER).countryCode(PhoneConst.COUNTRY_CODE)
+				.cityCode(PhoneConst.CITY_CODE).build();
+		this.userBase = UserDTO.builder().id(UserConst.ID).name(UserConst.USERNAME).email(UserConst.EMAIL)
+				.password(UserConst.PASSWORD).phones(List.of(this.phone)).create(creationDate).lastLogin(creationDate)
 				.isActive(true).build();
 	}
 
@@ -60,9 +63,9 @@ class UserControllerImplTest {
 
 	@Test
 	void testFindById() {
-		given(this.userService.findById(ID)).willReturn(this.userBase);
+		given(this.userService.findById(UserConst.ID)).willReturn(this.userBase);
 
-		final ResponseEntity<UserDTO> response = userController.findById(ID);
+		final ResponseEntity<UserDTO> response = userController.findById(UserConst.ID);
 
 		assertEquals(HttpStatus.OK, response.getStatusCode());
 		assertEquals(this.userBase, response.getBody());
@@ -78,14 +81,14 @@ class UserControllerImplTest {
 
 	@Test
 	void testUpdate() {
-		this.userController.update(ID, this.userBase);
-		verify(this.userService).update(ID, this.userBase);
+		this.userController.update(UserConst.ID, this.userBase);
+		verify(this.userService).update(UserConst.ID, this.userBase);
 	}
 
 	@Test
 	void testDelete() {
-		this.userController.delete(ID);
-		verify(this.userService).delete(ID);
+		this.userController.delete(UserConst.ID);
+		verify(this.userService).delete(UserConst.ID);
 	}
 
 }

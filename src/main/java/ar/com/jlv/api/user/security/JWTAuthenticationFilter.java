@@ -1,7 +1,5 @@
 package ar.com.jlv.api.user.security;
 
-import com.auth0.jwt.JWT;
-
 import com.fasterxml.jackson.databind.ObjectMapper;
 
 import ar.com.jlv.api.user.entities.UserEntity;
@@ -19,12 +17,8 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 import java.util.ArrayList;
-import java.util.Date;
 
-import static com.auth0.jwt.algorithms.Algorithm.HMAC512;
-import static ar.com.jlv.api.user.security.SecurityConstants.EXPIRATION_TIME;
 import static ar.com.jlv.api.user.security.SecurityConstants.HEADER_STRING;
-import static ar.com.jlv.api.user.security.SecurityConstants.SECRET;
 import static ar.com.jlv.api.user.security.SecurityConstants.TOKEN_PREFIX;
 
 /**
@@ -33,7 +27,7 @@ import static ar.com.jlv.api.user.security.SecurityConstants.TOKEN_PREFIX;
 public class JWTAuthenticationFilter extends UsernamePasswordAuthenticationFilter {
 	private AuthenticationManager authenticationManager;
 
-	public JWTAuthenticationFilter(AuthenticationManager authenticationManager) {
+	public JWTAuthenticationFilter(final AuthenticationManager authenticationManager) {
 		this.authenticationManager = authenticationManager;
 	}
 
@@ -42,11 +36,11 @@ public class JWTAuthenticationFilter extends UsernamePasswordAuthenticationFilte
 	 * AuthenticationManager
 	 */
 	@Override
-	public Authentication attemptAuthentication(HttpServletRequest req, HttpServletResponse res)
+	public Authentication attemptAuthentication(final HttpServletRequest req, final HttpServletResponse res)
 			throws AuthenticationException {
 		try {
 
-			UserEntity creds = new ObjectMapper().readValue(req.getInputStream(), UserEntity.class);
+			final UserEntity creds = new ObjectMapper().readValue(req.getInputStream(), UserEntity.class);
 
 			return authenticationManager.authenticate(
 					new UsernamePasswordAuthenticationToken(creds.getName(), creds.getPassword(), new ArrayList<>()));
@@ -60,11 +54,9 @@ public class JWTAuthenticationFilter extends UsernamePasswordAuthenticationFilte
 	 * utiliza para generar el JWT del usuario conectado.
 	 */
 	@Override
-	protected void successfulAuthentication(HttpServletRequest req, HttpServletResponse res, FilterChain chain,
-			Authentication auth) throws IOException, ServletException {
-		System.out.println("successfulAuthentication");
-		String token = JWT.create().withSubject(((User) auth.getPrincipal()).getUsername())
-				.withExpiresAt(new Date(System.currentTimeMillis() + EXPIRATION_TIME)).sign(HMAC512(SECRET.getBytes()));
+	protected void successfulAuthentication(final HttpServletRequest req, final HttpServletResponse res,
+			final FilterChain chain, final Authentication auth) throws IOException, ServletException {
+		final String token = JWTUtil.createToken(((User) auth.getPrincipal()).getUsername());
 		res.addHeader(HEADER_STRING, TOKEN_PREFIX + token);
 	}
 }

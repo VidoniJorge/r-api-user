@@ -1,11 +1,6 @@
 package ar.com.jlv.api.user.services.impl;
 
-import static ar.com.jlv.api.user.security.SecurityConstants.EXPIRATION_TIME;
-import static ar.com.jlv.api.user.security.SecurityConstants.SECRET;
-import static com.auth0.jwt.algorithms.Algorithm.HMAC512;
-
 import java.time.LocalDateTime;
-import java.util.Date;
 import java.util.List;
 import java.util.Optional;
 import java.util.stream.Collectors;
@@ -13,7 +8,6 @@ import java.util.stream.Collectors;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
 
-import com.auth0.jwt.JWT;
 import ar.com.jlv.api.user.dtos.UserDTO;
 import ar.com.jlv.api.user.entities.UserEntity;
 import ar.com.jlv.api.user.exceptions.ExistedEmailException;
@@ -21,6 +15,7 @@ import ar.com.jlv.api.user.exceptions.UserNotFoundException;
 import ar.com.jlv.api.user.mappers.PhoneMapper;
 import ar.com.jlv.api.user.mappers.UserMapper;
 import ar.com.jlv.api.user.repositories.UserRepository;
+import ar.com.jlv.api.user.security.JWTUtil;
 import ar.com.jlv.api.user.services.UserService;
 import lombok.extern.slf4j.Slf4j;
 
@@ -58,12 +53,12 @@ public class UserServiceImpl implements UserService {
 		this.validatedNonExistentEmail(user.getEmail());
 		final UserEntity entity = userMapper.convertDtoToEntity(user);
 		final LocalDateTime creationDate = LocalDateTime.now();
+		final String token = JWTUtil.createToken(user.getName());
+
 		entity.setCreate(creationDate);
 		entity.setCreate(creationDate);
 		entity.setIsActive(true);
 		entity.setPassword(bCryptPasswordEncoder.encode(user.getPassword()));
-		final String token = JWT.create().withSubject(user.getName())
-				.withExpiresAt(new Date(System.currentTimeMillis() + EXPIRATION_TIME)).sign(HMAC512(SECRET.getBytes()));
 		entity.setToken(token);
 
 		log.trace("Inicio del alta de usuario");

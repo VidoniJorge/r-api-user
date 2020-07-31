@@ -14,14 +14,13 @@ import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
 
 import ar.com.jlv.api.user.entities.UserEntity;
+import static ar.com.jlv.api.user.model.UserConst.USERNAME;
+import static ar.com.jlv.api.user.model.UserConst.PASSWORD;
 import ar.com.jlv.api.user.repositories.UserRepository;
 
 @ExtendWith(MockitoExtension.class)
 class UserDetailsServiceImplTest {
 
-	private static final String USERNAME = "pedro";
-	private static final String PASSWORD = "$2a$10$DE1330J9qm";
-	
 	@Mock
 	private UserRepository userRepository;
 	
