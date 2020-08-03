@@ -1,0 +1,171 @@
+{
+	"info": {
+		"_postman_id": "43d68362-e718-485d-8bf3-197bf1bcd60b",
+		"name": "R_API_USER",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "GET - UserByID",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzUxMiJ9.eyJzdWIiOiJqb3JnZSIsImV4cCI6MTU5Njk5NDAyNn0.Mz5woRnLX8n0_xzrD9QvLGoGj-6fLomDIvXYAoVDCTMe2xphjTiu1HdtKYpgGf68RLZ6Di4n2o7F6r446cXlEw",
+							"type": "string"
+						}
+					]
+				},
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "localhost:8080/users/b2d98bd6-40f1-45f1-acf5-044ca12e2b7d",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"users",
+						"b2d98bd6-40f1-45f1-acf5-044ca12e2b7d"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "POST - Alta de usuario",
+			"protocolProfileBehavior": {
+				"disabledSystemHeaders": {}
+			},
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Authorization",
+						"value": "Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzUxMiJ9.eyJzdWIiOiJqb3JnZSIsImV4cCI6MTU5Njk5MDkyMn0.8cxnqq1bnGdbvMzY_K6HTXt_n2NYLMECWM7voXQsbh-zsx1VRmqpzJfBQFtJzIQjk1o7MTtbDc8VzunziguTMw",
+						"type": "text",
+						"disabled": true
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"name\":\"jorge\",\r\n    \"email\":\"jorge.vidoni@globallogic.com\",\r\n    \"password\":\"Jo21rgeVidon!i\",\r\n    \"phones\":[\r\n        {\r\n            \"number\": 2123,\r\n            \"cityCode\": 123,\r\n            \"countryCode\": 123\r\n        },\r\n        {\r\n            \"number\": 423123,\r\n            \"cityCode\": 4123,\r\n            \"countryCode\": 4123\r\n        }\r\n    ]\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "localhost:8080/users",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"users"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "POST - Login",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"name\": \"jorge\",\r\n    \"password\": \"Jo21rgeVidon!i\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:8080/login",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"login"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "PUT - Modificación de Ususrio",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzUxMiJ9.eyJzdWIiOiJqb3JnZSIsImV4cCI6MTU5Njk5MjI2M30.oGULg9JO6Gb94gpCAMuppK7Ee2oouNL01zB6IchGtigTl_arM6RAm0rWQe2NzTTCOzHSrR_tgCAZ0aW6-kia1w",
+							"type": "string"
+						}
+					]
+				},
+				"method": "PUT",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"name\":\"jorge\",\r\n    \"email\":\"jorge.vidoni@globallogic.com\",\r\n    \"password\":\"Jo21rgeVidon!i\",\r\n    \"phones\":[\r\n        {\r\n            \"number\": 680808,\r\n            \"cityCode\": 3541,\r\n            \"countryCode\": 11\r\n        },\r\n        {\r\n            \"number\": 423123,\r\n            \"cityCode\": 4123,\r\n            \"countryCode\": 4123\r\n        }\r\n    ],\r\n    \"isActive\": true\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "localhost:8080/users/b2d98bd6-40f1-45f1-acf5-044ca12e2b7d",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"users",
+						"b2d98bd6-40f1-45f1-acf5-044ca12e2b7d"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "DELETE - Baja de usuario",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzUxMiJ9.eyJzdWIiOiJqb3JnZSIsImV4cCI6MTU5Njk5MTc5NX0.hjOOkRjj8Gu1Xr309iUsqf-4FeS0o-aqm_6vnB2TpzrE8KO8HbW83nOwrNHE7cx8c4Fon2AlQz7CrNYfeAtK9g",
+							"type": "string"
+						}
+					]
+				},
+				"method": "DELETE",
+				"header": [],
+				"url": {
+					"raw": "localhost:8080/users/b2d98bd6-40f1-45f1-acf5-044ca12e2b7d",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"users",
+						"b2d98bd6-40f1-45f1-acf5-044ca12e2b7d"
+					]
+				}
+			},
+			"response": []
+		}
+	],
+	"protocolProfileBehavior": {}
+}
